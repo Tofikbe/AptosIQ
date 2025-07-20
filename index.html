@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AptosIQ Agent</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f8fa; }
+    h1 { color: #333; }
+    textarea, input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; }
+    button { padding: 10px 20px; border: none; background: #4CAF50; color: white; border-radius: 8px; cursor: pointer; }
+    .response { background: white; padding: 15px; margin-top: 10px; border-radius: 8px; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>🤖 AptosIQ AI Agent</h1>
+  <textarea id="question" rows="3" placeholder="Ask about Aptos..."></textarea>
+  <button onclick="askAgent()">Ask</button>
+  <div id="response" class="response"></div>
+
+  <script>
+    async function askAgent() {
+      const question = document.getElementById("question").value;
+      const res = await fetch('/api/aptosiq?query=' + encodeURIComponent(question));
+      const data = await res.json();
+      document.getElementById("response").innerText = data.answer;
+    }
+  </script>
+</body>
+</html>
